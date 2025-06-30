@@ -7,6 +7,7 @@ dotenv.config();
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 const groupRoutes = require('./routes/groupRoutes');
+const reminderRoutes = require('./routes/reminderRoutes');
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/groups', groupRoutes);
+app.use('/api/reminders', reminderRoutes);
 
 app.get('/', (req, res) => {
     res.send('API is running...');

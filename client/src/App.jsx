@@ -30,6 +30,7 @@ import Tasks from "./pages/Tasks";
 import Groups from "./pages/Groups";
 import Kanban from "./pages/Kanban";
 import Dashboard from "./pages/Dashboard";
+import Reminders from "./pages/Reminders"; // ✅ Import Reminders Page
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/groups" element={<Groups />} />
           <Route path="/kanban" element={<Kanban />} />
+          <Route path="/reminders" element={<Reminders />} />
         </Routes>
       </BrowserRouter>
     </GroupProvider>
