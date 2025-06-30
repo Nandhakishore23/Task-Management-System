@@ -80,15 +80,16 @@ function Sidebar() {
   const location = useLocation();
 
   useEffect(() => {
-    const loadGroups = async () => {
-      const res = await getGroups();
-      setGroups(res.data);
-      if (!currentGroup) {
-        setCurrentGroup(res.data[0]); // Default to first group
-      }
-    };
-    loadGroups();
-  }, []);
+  const loadGroups = async () => {
+    const res = await getGroups();
+    setGroups(res.data);
+    if (!currentGroup && res.data.length > 0) {
+      setCurrentGroup(res.data[0]);  // ✅ Auto-select first group
+    }
+  };
+  loadGroups();
+}, []);
+
 
   const linkClass = (path) =>
     location.pathname === path ? "bg-blue-600 text-white" : "hover:bg-blue-100";
@@ -105,11 +106,21 @@ function Sidebar() {
             setCurrentGroup(group);
           }}
         >
-          {groups.map((g) => (
+          {/* {groups.map((g) => (
             <option key={g._id} value={g._id}>
               {g.name}
             </option>
-          ))}
+          ))} */}
+
+           {groups.length === 0 ? (
+      <option>No Groups Found</option>
+      ) : (
+      groups.map((g) => (
+        <option key={g._id} value={g._id}>
+         {g.name}
+       </option>
+        ))
+        )}
         </select>
       </div>
 
