@@ -55,6 +55,7 @@ const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 const groupRoutes = require('./routes/groupRoutes');
 const reminderRoutes = require('./routes/reminderRoutes');
+const analyticsRoutes = require('./routes/analyticsRoutes');
 
 const cron = require('node-cron');
 const checkAndSendReminders = require('./jobs/reminderJob');
@@ -63,8 +64,8 @@ const app = express();
 
 // 🔔 Cron Job — runs every day at 9 AM
 cron.schedule('0 9 * * *', () => {
-  console.log('🔔 Running Reminder Email Job...');
-  checkAndSendReminders();
+    console.log('🔔 Running Reminder Email Job...');
+    checkAndSendReminders();
 });
 
 // Middleware
@@ -76,6 +77,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/groups', groupRoutes);
 app.use('/api/reminders', reminderRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 app.get('/', (req, res) => {
   res.send('API is running...');

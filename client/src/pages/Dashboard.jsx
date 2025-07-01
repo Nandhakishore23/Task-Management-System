@@ -119,6 +119,10 @@ import { useGroup } from '../context/GroupContext';
 import { getTasks } from '../services/taskService';
 import { getReminders } from '../services/reminderService';
 import dayjs from 'dayjs';
+import TaskHeatmap from '../components/TaskHeatmap';
+import ProductivityDashboard from '../components/ProductivityDashboard';
+
+
 
 function Dashboard() {
   const { currentGroup } = useGroup();
@@ -225,6 +229,8 @@ function Dashboard() {
               </ul>
             )}
           </div>
+          <TaskHeatmap />
+          <ProductivityDashboard />
         </main>
       </div>
     </div>
